@@ -1,0 +1,36 @@
+body,
+html,
+#content {
+    height: 100%;
+    width: 100%;
+}
+
+
+#content {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.carousel-image {
+    max-height: 100%;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.carousel-control-prev, .carousel-control-next{
+	width: 5% !important;
+}
+
+.padding-left {
+	padding-left: 9%;
+}
+
+
+
+#profile-text {
+	padding-left: 3em;
+
+}
