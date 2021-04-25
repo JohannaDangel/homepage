@@ -44,8 +44,8 @@
         <div id="background">
           <h2>About</h2>
           <div class="row">
-            <img class="rounded-circle col-2" src="static/img/me_small.jpg" id="profile-photo" alt="Generic placeholder image">
-            <p class="col-10" id="profil-text">I am a born and raised in the wonderful Swabian region of Baden-Wuerttemberg (Germany). Later I moved to Regensburg, a city along the Danube in Bavaria.
+            <img class="rounded-circle" src="static/img/me_small.jpg" id="profile-photo" alt="Generic placeholder image">
+            <p id="profile-text">I am a born and raised in the wonderful Swabian region of Baden-Wuerttemberg (Germany). Later I moved to Regensburg, a city along the Danube in Bavaria.
               <br> <br>
               Contact: johannadangel97@web.de
             </p>
@@ -176,15 +176,51 @@
       </div>
 </body>
 <script>
-  var header = document.getElementById("header-scroll");
-  var sticky = header.offsetTop;
+
+  const PROFILE_PHOTO = document.getElementById("profile-photo"),
+  PROFILE_TEXT = document.getElementById("profile-text"),
+  HEADER =  document.getElementById("header-scroll");
+  var sticky = HEADER.offsetTop;
+
   document.getElementById("wrapper").addEventListener("scroll", function(e) {
-    if (header.getBoundingClientRect().top <= 0) {
-      header.classList.add("sticky-header");
+    if (HEADER.getBoundingClientRect().top <= 0) {
+      HEADER.classList.add("sticky-header");
     } else {
-      header.classList.remove("sticky-header");
+      HEADER.classList.remove("sticky-header");
     }
   });
+
+  window.addEventListener("load", setLayoutClasses);
+  window.addEventListener('resize', setLayoutClasses);
+
+   function setLayoutClasses(){
+     resetLayoutClasses([PROFILE_PHOTO,PROFILE_TEXT ]);
+    let width = document.documentElement.clientWidth,
+     colWidthPhoto,
+        colWidthText;
+    if (width < 770 ){
+       colWidthPhoto = 12;
+      colWidthText= 12;
+    }
+    else {
+       colWidthPhoto = 2;
+      colWidthText = 10;
+    }
+     PROFILE_PHOTO.classList.add("col-"+ colWidthPhoto);
+     PROFILE_TEXT.classList.add("col-"+ colWidthText);
+  }
+
+
+function resetLayoutClasses(elementsArray){
+for(let el of elementsArray){
+  for (let i = 1;  i <= 12; i++){
+    el.classList.remove("col-" + i);
+    el.classList.remove("col-lg-" + i);
+    el.classList.remove("col-sm-" + i);
+  }
+}
+}
+
 </script>
 
 </html>
